@@ -27,13 +27,13 @@ public class ValidationRules {
 	}
 	
 	public static Customer checkInputs(String fName, String lName, String email, String password, double regAmt, String dob,
-			String servicePlan,List<Customer> list)
+			String servicePlan,String subDate,List<Customer> list)
 					throws InvlidInputExceptions,IllegalArgumentException,NullPointerException
 	{
 		checkDuplicate(email, list);
 		Plan p=parseAndValidatePlan(servicePlan);
 		double amt=validateAmt(p,regAmt);
-		Customer c=new Customer(fName, lName, email, password,regAmt,LocalDate.parse(dob), p);
+		Customer c=new Customer(fName, lName, email, password,amt,LocalDate.parse(dob), p,LocalDate.parse(subDate));
 		return c;
 	}
 
