@@ -14,7 +14,7 @@ public class AdminUtil {
 	public static void planExpiry(List<Customer> list) {
 		for(Customer c:list) {
 			Period p=between(c.getSubDate(),LocalDate.now());
-			if(p.getMonths()>=6 || p.getYears()>=1)
+			if(p.getMonths()>=3 || p.getYears()>=1)
 				System.out.println("Name : "+c.getfName()+" "+c.getlName());
 		}
 	}

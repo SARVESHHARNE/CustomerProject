@@ -2,9 +2,13 @@ package com.code.custutils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import com.exceptions.InvlidInputExceptions;
 import java.time.LocalDate;
-import static com.code.validations.ValidationRules.checkInputs;
+
+import static com.code.custutils.CustUtil.getCust;
+import static com.code.validations.ValidationRules.*;
 
 import com.code.Customer;
 import com.code.enums.Plan;
@@ -21,6 +25,17 @@ public class CustUtil {
 			throw new InvlidInputExceptions("Wrong password");
 		}
 		return c;
+	}
+	
+	public static void updateSubscription(String email, String password,List<Customer> list,Scanner sc) throws InvlidInputExceptions {
+		Customer c =getCust(email, password, list);
+		System.out.println("Select plan : SILVER(1000),GOLD(2000),DIAMOND(5000),PLATINUM(10000)");
+		Plan p=Plan.valueOf(sc.next().toUpperCase());
+		c.setServicePlan(p);
+		System.out.println("Enter amount :");
+		validateAmt(p,sc.nextDouble());
+		c.setSubDate(LocalDate.now());
+		System.out.println(" *** updated *** ");
 	}
 	
 	//"fName, lName, email, password,regAmt,dob(yyyy-MM-dd),servicePlan(SILVER|GOLD|DIAMOND|PLATINUM)"

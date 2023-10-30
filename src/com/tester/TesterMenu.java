@@ -1,6 +1,6 @@
 package com.tester;
 
-import java.lang.annotation.AnnotationTypeMismatchException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +16,7 @@ import static com.code.custutils.CustUtil.*;
 
 public class TesterMenu {
 	public static void main(String [] args) {
+		
 		try(Scanner sc=new Scanner(System.in)){
 			List<Customer> list = sampleData();
 			boolean exit=false;
@@ -31,6 +32,7 @@ public class TesterMenu {
 						+ "8. Sort by dob And lname\r\n"
 						+ "9. list of not paid for 3 months\r\n"
 						+ "10.remove 6 month old\r\n"
+						+ "11.Update Subscription\r\n"
 						+ "0. Exit ");
 				
 				try {
@@ -48,7 +50,9 @@ public class TesterMenu {
 						System.out.println("Enter EmailId & oldPassword ");
 						Customer c=getCust(sc.next(), sc.next(), list);
 						System.out.println("enter newPassword");
-						c.setPassword(sc.next());
+						String pass=sc.next();
+						validatePassword(pass);
+						c.setPassword(pass);
 						break;
 					case 4:
 						System.out.println("Enter email");
@@ -94,6 +98,10 @@ public class TesterMenu {
 						break;
 					case 10:
 						removeOldCus(list);
+						break;
+					case 11:
+						System.out.println("Enter Email & Password");
+						updateSubscription(sc.next(), sc.next(), list, sc);
 						break;
 					case 0:
 						exit=true;

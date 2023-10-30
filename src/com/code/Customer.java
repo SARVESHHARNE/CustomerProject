@@ -108,4 +108,8 @@ public class Customer implements Comparable<Customer> {
 		this.password = password;
 	}
 
+	public void setServicePlan(Plan servicePlan) {
+		this.servicePlan = servicePlan;
+	}
+
 }
